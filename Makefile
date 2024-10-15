@@ -1,9 +1,8 @@
 USERNAME ?= your_username
 PASSWORD ?= your_password
-NUMBER ?= 2
+NUMBER ?= 
 
 all: login scrape
-
 
 login:
 	@echo "Running login.py with USERNAME=$(USERNAME) and PASSWORD=$(PASSWORD)..."
