@@ -1,5 +1,5 @@
-USERNAME ?= your_username
-PASSWORD ?= your_password
+override USERNAME = 
+override PASSWORD =
 NUMBER ?= 
 
 all: login scrape

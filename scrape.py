@@ -122,7 +122,7 @@ parser.add_argument('-n','--number', type=str, help='Số vòng reaload trang', 
 
 args = parser.parse_args()
 urls = scoll_and_get_list(int(args.number))
-
+print(len(urls))
 scraped_data = scrape_threads(urls)
 
 # existing_data.extend(scraped_data)
@@ -133,4 +133,4 @@ print(f"After scraping, there are {len(existing_data)} threads in total.")
 print(f"Scraped {len(scraped_data)} threads successfully.")
 
 # script :
-# python scrape.py -a 2
+# python scrape.py -n 2
