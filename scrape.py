@@ -9,8 +9,8 @@ from nested_lookup import nested_lookup
 from playwright.sync_api import sync_playwright
 import pickle
 from find_view import get_text_from_span_containing
-from scroll_simulator import scoll_and_get_list
-
+from reload_simulator import scoll_and_get_list
+from tqdm import tqdm 
 def load_existing_data(file_path):
     """Load existing data from a JSON file."""
     try:
@@ -21,7 +21,7 @@ def load_existing_data(file_path):
     except json.JSONDecodeError:
         return []  
     
-existing_data = load_existing_data('data.json')
+existing_data = load_existing_data('Bigdata.json')
 print(f"Loaded {len(existing_data)} existing threads.")
 
 def parse_timestamp(timestamp) -> str:
@@ -72,7 +72,7 @@ def scrape_threads(urls: List[str]) -> List[dict]:
 
         page = context.new_page()
 
-        for url in urls:
+        for url in tqdm(urls, desc="Scraping progress"):
             try:
                 page.goto(url)
                 page.wait_for_timeout(randint(5000, 10000))
@@ -127,7 +127,7 @@ scraped_data = scrape_threads(urls)
 
 # existing_data.extend(scraped_data)
 
-with open('data.json', 'w', encoding='utf-8') as f:
+with open('Bigdata.json', 'w', encoding='utf-8') as f:
     json.dump(existing_data, f, ensure_ascii=False, indent=4)
 print(f"After scraping, there are {len(existing_data)} threads in total.")
 print(f"Scraped {len(scraped_data)} threads successfully.")

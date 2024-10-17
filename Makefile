@@ -1,5 +1,5 @@
 override USERNAME = 
-override PASSWORD =
+override PASSWORD = 
 NUMBER ?= 
 
 all: login scrape
